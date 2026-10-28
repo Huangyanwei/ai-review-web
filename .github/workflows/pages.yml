@@ -1,5 +1,4 @@
 name: Deploy site to GitHub Pages
-
 on:
   push:
     branches: [main]
@@ -23,6 +22,12 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+        with:
+          sparse-checkout: |
+            /index.html
+            /app.js
+            /styles.css
+          sparse-checkout-cone-mode: false
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site files
